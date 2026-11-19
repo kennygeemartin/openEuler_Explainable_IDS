@@ -40,7 +40,7 @@ The randomization seed is `20261119`. Splits are stratified after exact-feature 
 | Calibration | 616 | 475 | 141 |
 | Threshold validation | 411 | 317 | 94 |
 | Independent test | 619 | 477 | 142 |
-| **Total** | **4,112** | **3,173** | **939** |
+| **Total** | **4,112** | **3,171** | **941** |
 
 Two detectors: ridge-regularized logistic baseline (220 iterations), and a 160-stage Newton-updated **boosted decision-stump** ensemble (learning rate 0.085, L2 = 6, 18 threshold candidates/feature). The boosted model is *not a package-level XGBoost implementation*, nor a multiclass classifier. Isotonic calibration uses only the calibration partition. The operating threshold `0.75` is selected exclusively from benign validation scores for a nominal 3% FPR target (actual validation FPR 3.15%).
 

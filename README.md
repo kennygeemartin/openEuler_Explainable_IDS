@@ -19,7 +19,7 @@ Requires **Node.js 18 or newer**. No npm packages needed. From the repository ro
 node code/UNSW_NB15_Extract_Experiment.mjs
 ```
 
-The program downloads the public mapped sample. Alternatively provide an existing CSV:
+The program downloads the public mapped sample. The complete automated reproduction (including the nine PNG figures and held-out prediction CSV) succeeded in [GitHub Actions](https://github.com/kennygeemartin/openEuler_Explainable_IDS/actions/workflows/reproduce.yml). Alternatively provide an existing CSV:
 
 ```bash
 node code/UNSW_NB15_Extract_Experiment.mjs data/unsw_nb15_canonical_12d.csv
@@ -70,10 +70,15 @@ The evidence gate reduces benign recommendations substantially, but in this part
 - `results/UNSW_Benchmark_Verified_Results.json` — recorded summary metrics
 - `docs/EXPERIMENTAL_METHODS_AND_RESULTS.md` — research protocol and interpretation
 - `docs/DATASET_PROVENANCE.md` — sample lineage, feature list, deduplication and evaluation restrictions
-- `figures/` — chart-generation recipe; run the experiment first to regenerate matching plots
-- `requirements/` — runtime notes and dependency-free Node setup
+- `figures/` — nine committed PNG charts, reproducible using `python code/render_figures.py`
+- `code/check_results.py` — reproducibility assertions comparing the current run against the verified results
+- `code/render_figures.py` — regeneration of all nine figure PNG files
+- `results/UNSW_Benchmark_Metrics.json` — complete numerical run output
+- `results/UNSW_Heldout_Predictions.csv` — held-out labels, probabilities and alerts
+- `.github/workflows/reproduce.yml` — automated full run, verification, figure generation and artifact publication
+- `requirements/` — Python plotting dependencies; Node model execution is dependency-free
 
-The associated final formatted Word manuscript and figure PNGs were also provided as separate downloadable research artifacts in the ChatGPT session. The repository source and metrics are sufficient to rerun the evaluation independently, but publication claims should follow the dataset and deployment scope documented here.
+The formatted Word manuscript remains available as the separate research document supplied in the ChatGPT session. This repository contains the complete executable experiment, recorded metrics, held-out predictions, visualizations, provenance and an automated reproducibility workflow. The source data are fetched from their original publisher. Publication claims should follow the dataset and deployment scope documented here.
 
 ## Ethical/operational note
 

@@ -1,0 +1,157 @@
+{
+  "study": "Public UNSW-NB15-derived mapped-extract IDS experiment",
+  "source_url": "https://github.com/sriram21-09/PhantomNet/blob/main/data/external_benchmarks/unsw_nb15_canonical_12d.csv",
+  "upstream_blob_sha": "ddd6c902fffa493b70eb99c4dddb9b98f77439bb",
+  "source_records": 5000,
+  "unique_consistently_labeled_records": 4112,
+  "duplicate_or_ambiguous_records_removed": 888,
+  "validation_protocol": "Stratified train/calibration/threshold/test splits after global exact-feature deduplication; seed 20261119; fit-only scaling; frozen threshold",
+  "split_counts": {
+    "fit": {
+      "records": 2466,
+      "normal": 1902,
+      "intrusion": 564
+    },
+    "calibration": {
+      "records": 616,
+      "normal": 475,
+      "intrusion": 141
+    },
+    "threshold_validation": {
+      "records": 411,
+      "normal": 317,
+      "intrusion": 94
+    },
+    "test": {
+      "records": 619,
+      "normal": 477,
+      "intrusion": 142
+    }
+  },
+  "boosted_model": {
+    "type": "Newton-updated logistic gradient-boosted decision stumps",
+    "n_stages": 160,
+    "learning_rate": 0.085,
+    "l2": 6,
+    "cutpoints_per_feature": 18
+  },
+  "calibrated_operating_threshold": 0.75,
+  "validation_false_positive_rate": 0.031545741324921134,
+  "metrics": {
+    "logistic": {
+      "tn": 447,
+      "fp": 30,
+      "fn": 44,
+      "tp": 98,
+      "accuracy": 0.8804523424878837,
+      "precision": 0.765625,
+      "recall": 0.6901408450704225,
+      "f1": 0.725925925925926,
+      "fpr": 0.06289308176100629,
+      "auroc": 0.9275253196326808,
+      "brier": 0.08558207997461471
+    },
+    "boosted_stumps": {
+      "tn": 455,
+      "fp": 22,
+      "fn": 18,
+      "tp": 124,
+      "accuracy": 0.9353796445880452,
+      "precision": 0.8493150684931506,
+      "recall": 0.8732394366197183,
+      "f1": 0.861111111111111,
+      "fpr": 0.04612159329140461,
+      "auroc": 0.9665825139516343,
+      "brier": 0.05926665155986686
+    },
+    "calibrated_frozen": {
+      "tn": 459,
+      "fp": 18,
+      "fn": 28,
+      "tp": 114,
+      "accuracy": 0.925686591276252,
+      "precision": 0.8636363636363636,
+      "recall": 0.8028169014084507,
+      "f1": 0.832116788321168,
+      "fpr": 0.03773584905660377,
+      "auroc": 0.9689816045117666,
+      "brier": 0.054822362238409306
+    }
+  },
+  "expected_calibration_error": {
+    "raw": 0.04798001197142092,
+    "after_isotonic": 0.020103543912200823
+  },
+  "response_policy_simulation": [
+    {
+      "name": "No response",
+      "alerts": 132,
+      "attack_intervention_pct": 0,
+      "benign_intervention_pct": 0,
+      "cost_per_record": 0.2294022617124394
+    },
+    {
+      "name": "Block all alerts",
+      "alerts": 132,
+      "attack_intervention_pct": 80.28169014084507,
+      "benign_intervention_pct": 3.7735849056603774,
+      "benign_block_pct": 3.7735849056603774,
+      "cost_per_record": 0.10726978998384512
+    },
+    {
+      "name": "Risk tiers",
+      "alerts": 132,
+      "attack_intervention_pct": 60.56338028169014,
+      "benign_intervention_pct": 1.6771488469601679,
+      "benign_block_pct": 0.20964360587002098,
+      "cost_per_record": 0.13526655896607437
+    },
+    {
+      "name": "Evidence gate",
+      "alerts": 132,
+      "attack_intervention_pct": 0.7042253521126761,
+      "benign_intervention_pct": 0.20964360587002098,
+      "benign_block_pct": 0,
+      "cost_per_record": 0.22151050080775408
+    }
+  ],
+  "feature_gain_ranking": [
+    {
+      "name": "unique_dst_ips",
+      "gain": 5729.274294388185,
+      "n_stumps": 26
+    },
+    {
+      "name": "inter_arrival_mean",
+      "gain": 2157.41605267221,
+      "n_stumps": 54
+    },
+    {
+      "name": "packet_length",
+      "gain": 1214.3895615614877,
+      "n_stumps": 26
+    },
+    {
+      "name": "unique_dst_ports",
+      "gain": 552.3701683369982,
+      "n_stumps": 16
+    },
+    {
+      "name": "inter_arrival_std",
+      "gain": 285.36234070912764,
+      "n_stumps": 18
+    },
+    {
+      "name": "dst_port_class",
+      "gain": 246.62841275253405,
+      "n_stumps": 12
+    },
+    {
+      "name": "packet_size_variance",
+      "gain": 115.16692455327009,
+      "n_stumps": 8
+    }
+  ],
+  "scope": "Binary benchmark-extract classification and simulated action recommendations, not real openEuler enforcement; no official full-dataset test.",
+  "precision_note": "The evidence gate suppresses nearly all true-attack interventions on this sample. Do not claim an improvement in attack containment."
+}

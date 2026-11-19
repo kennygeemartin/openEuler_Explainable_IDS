@@ -1,0 +1,422 @@
+{
+  "sourceUrl": "https://raw.githubusercontent.com/sriram21-09/PhantomNet/main/data/external_benchmarks/unsw_nb15_canonical_12d.csv",
+  "sourceRows": 5000,
+  "cleanedRows": 4112,
+  "removedDuplicateOrAmbiguous": 888,
+  "featureNames": [
+    "packet_length",
+    "protocol_encoding",
+    "dst_port_class",
+    "src_port_ephemeral",
+    "event_rate_1m",
+    "burst_rate_10s",
+    "inter_arrival_mean",
+    "inter_arrival_std",
+    "packet_size_variance",
+    "payload_entropy",
+    "unique_dst_ips",
+    "unique_dst_ports"
+  ],
+  "partitions": {
+    "train": {
+      "n": 2466,
+      "benign": 1902,
+      "attack": 564
+    },
+    "cal": {
+      "n": 616,
+      "benign": 475,
+      "attack": 141
+    },
+    "val": {
+      "n": 411,
+      "benign": 317,
+      "attack": 94
+    },
+    "test": {
+      "n": 619,
+      "benign": 477,
+      "attack": 142
+    }
+  },
+  "seed": 20261119,
+  "trainModel": "logistic gradient boosting with 160 decision stumps; Newton leaf update; 18 cutpoints / feature",
+  "modelParameters": {
+    "nTrees": 160,
+    "shrinkage": 0.085,
+    "l2": 6,
+    "logisticEpochs": 220
+  },
+  "threshold": 0.75,
+  "validationFpr": 0.031545741324921134,
+  "models": {
+    "logistic": {
+      "n": 619,
+      "tn": 447,
+      "fp": 30,
+      "fn": 44,
+      "tp": 98,
+      "acc": 0.8804523424878837,
+      "precision": 0.765625,
+      "recall": 0.6901408450704225,
+      "f1": 0.725925925925926,
+      "fpr": 0.06289308176100629,
+      "auroc": 0.9275253196326808,
+      "brier": 0.08558207997461471
+    },
+    "boostedStumps": {
+      "n": 619,
+      "tn": 455,
+      "fp": 22,
+      "fn": 18,
+      "tp": 124,
+      "acc": 0.9353796445880452,
+      "precision": 0.8493150684931506,
+      "recall": 0.8732394366197183,
+      "f1": 0.861111111111111,
+      "fpr": 0.04612159329140461,
+      "auroc": 0.9665825139516343,
+      "brier": 0.05926665155986682
+    },
+    "calibrated05": {
+      "n": 619,
+      "tn": 459,
+      "fp": 18,
+      "fn": 28,
+      "tp": 114,
+      "acc": 0.925686591276252,
+      "precision": 0.8636363636363636,
+      "recall": 0.8028169014084507,
+      "f1": 0.832116788321168,
+      "fpr": 0.03773584905660377,
+      "auroc": 0.9689816045117666,
+      "brier": 0.054822362238409306
+    },
+    "calibratedFrozen": {
+      "n": 619,
+      "tn": 459,
+      "fp": 18,
+      "fn": 28,
+      "tp": 114,
+      "acc": 0.925686591276252,
+      "precision": 0.8636363636363636,
+      "recall": 0.8028169014084507,
+      "f1": 0.832116788321168,
+      "fpr": 0.03773584905660377,
+      "auroc": 0.9689816045117666,
+      "brier": 0.054822362238409306
+    }
+  },
+  "calibration": {
+    "rawECE": 0.04798001197142092,
+    "calibratedECE": 0.020103543912200823,
+    "rawBins": [
+      {
+        "bin": 0,
+        "n": 382,
+        "meanProbability": 0.028073818946991007,
+        "observedRate": 0.013089005235602094
+      },
+      {
+        "bin": 1,
+        "n": 49,
+        "meanProbability": 0.14137189369403583,
+        "observedRate": 0.12244897959183673
+      },
+      {
+        "bin": 2,
+        "n": 16,
+        "meanProbability": 0.23710160830413077,
+        "observedRate": 0.125
+      },
+      {
+        "bin": 3,
+        "n": 18,
+        "meanProbability": 0.3532215311265004,
+        "observedRate": 0.2222222222222222
+      },
+      {
+        "bin": 4,
+        "n": 8,
+        "meanProbability": 0.44125915935246307,
+        "observedRate": 0.125
+      },
+      {
+        "bin": 5,
+        "n": 20,
+        "meanProbability": 0.5580845036042753,
+        "observedRate": 0.8
+      },
+      {
+        "bin": 6,
+        "n": 31,
+        "meanProbability": 0.6597704728829055,
+        "observedRate": 0.6774193548387096
+      },
+      {
+        "bin": 7,
+        "n": 42,
+        "meanProbability": 0.7409911986633075,
+        "observedRate": 0.9047619047619048
+      },
+      {
+        "bin": 8,
+        "n": 53,
+        "meanProbability": 0.8471184096433412,
+        "observedRate": 0.9245283018867925
+      },
+      {
+        "bin": 9,
+        "n": 0,
+        "meanProbability": null,
+        "observedRate": null
+      }
+    ],
+    "calBins": [
+      {
+        "bin": 0,
+        "n": 418,
+        "meanProbability": 0.02127554858326696,
+        "observedRate": 0.01674641148325359
+      },
+      {
+        "bin": 1,
+        "n": 24,
+        "meanProbability": 0.10526315789473678,
+        "observedRate": 0.20833333333333334
+      },
+      {
+        "bin": 2,
+        "n": 15,
+        "meanProbability": 0.21052631578947362,
+        "observedRate": 0.13333333333333333
+      },
+      {
+        "bin": 3,
+        "n": 16,
+        "meanProbability": 0.3076923076923076,
+        "observedRate": 0.25
+      },
+      {
+        "bin": 4,
+        "n": 14,
+        "meanProbability": 0.46666666666666673,
+        "observedRate": 0.7142857142857143
+      },
+      {
+        "bin": 5,
+        "n": 0,
+        "meanProbability": null,
+        "observedRate": null
+      },
+      {
+        "bin": 6,
+        "n": 0,
+        "meanProbability": null,
+        "observedRate": null
+      },
+      {
+        "bin": 7,
+        "n": 37,
+        "meanProbability": 0.75,
+        "observedRate": 0.7297297297297297
+      },
+      {
+        "bin": 8,
+        "n": 60,
+        "meanProbability": 0.8963265306122451,
+        "observedRate": 0.8833333333333333
+      },
+      {
+        "bin": 9,
+        "n": 35,
+        "meanProbability": 1,
+        "observedRate": 0.9714285714285714
+      }
+    ]
+  },
+  "gainRanking": [
+    {
+      "name": "unique_dst_ips",
+      "gain": 5729.274294388185,
+      "nTrees": 26
+    },
+    {
+      "name": "inter_arrival_mean",
+      "gain": 2157.4160526722108,
+      "nTrees": 54
+    },
+    {
+      "name": "packet_length",
+      "gain": 1214.3895615614874,
+      "nTrees": 26
+    },
+    {
+      "name": "unique_dst_ports",
+      "gain": 552.3701683369984,
+      "nTrees": 16
+    },
+    {
+      "name": "inter_arrival_std",
+      "gain": 285.3623407091286,
+      "nTrees": 18
+    },
+    {
+      "name": "dst_port_class",
+      "gain": 246.6284127525341,
+      "nTrees": 12
+    },
+    {
+      "name": "packet_size_variance",
+      "gain": 115.16692455326991,
+      "nTrees": 8
+    },
+    {
+      "name": "protocol_encoding",
+      "gain": 0,
+      "nTrees": 0
+    },
+    {
+      "name": "src_port_ephemeral",
+      "gain": 0,
+      "nTrees": 0
+    },
+    {
+      "name": "event_rate_1m",
+      "gain": 0,
+      "nTrees": 0
+    },
+    {
+      "name": "burst_rate_10s",
+      "gain": 0,
+      "nTrees": 0
+    },
+    {
+      "name": "payload_entropy",
+      "gain": 0,
+      "nTrees": 0
+    }
+  ],
+  "localExplanation": {
+    "recordIndex": 3298,
+    "observedLabel": 1,
+    "calibratedScore": 0.8979591836734694,
+    "offset": -2.3729711347247457,
+    "featureContributions": [
+      0.6813273141523205,
+      0,
+      0.13058511592232877,
+      0,
+      0,
+      0,
+      0.9556953134342121,
+      -0.13458877421319165,
+      0.09241304876593648,
+      0,
+      1.6626287430891438,
+      0.42420672082947203
+    ],
+    "logitReconstruction": 1.439296347255476,
+    "modelLogit": 1.4392963472554752
+  },
+  "responsePolicies": [
+    {
+      "name": "No response",
+      "alertPct": 21.324717285945074,
+      "attackCoveragePct": 0,
+      "benignActionPct": 0,
+      "benignBlockPct": 0,
+      "cost": 0.2294022617124394
+    },
+    {
+      "name": "Block every alert",
+      "alertPct": 21.324717285945074,
+      "attackCoveragePct": 80.28169014084507,
+      "benignActionPct": 3.7735849056603774,
+      "benignBlockPct": 3.7735849056603774,
+      "cost": 0.10726978998384512
+    },
+    {
+      "name": "Risk tiers",
+      "alertPct": 21.324717285945074,
+      "attackCoveragePct": 60.563380281690144,
+      "benignActionPct": 1.6771488469601676,
+      "benignBlockPct": 0.20964360587002095,
+      "cost": 0.13526655896607437
+    },
+    {
+      "name": "Risk + evidence gate",
+      "alertPct": 21.324717285945074,
+      "attackCoveragePct": 0.704225352112676,
+      "benignActionPct": 0.20964360587002095,
+      "benignBlockPct": 0,
+      "cost": 0.22151050080775408
+    }
+  ],
+  "noiseSensitivity": [
+    {
+      "noiseSD": 0,
+      "n": 619,
+      "tn": 459,
+      "fp": 18,
+      "fn": 28,
+      "tp": 114,
+      "acc": 0.925686591276252,
+      "precision": 0.8636363636363636,
+      "recall": 0.8028169014084507,
+      "f1": 0.832116788321168,
+      "fpr": 0.03773584905660377,
+      "auroc": 0.9689816045117666,
+      "brier": 0.054822362238409306,
+      "ece": 0.020103543912200823
+    },
+    {
+      "noiseSD": 0.15,
+      "n": 619,
+      "tn": 449,
+      "fp": 28,
+      "fn": 48,
+      "tp": 94,
+      "acc": 0.877221324717286,
+      "precision": 0.7704918032786885,
+      "recall": 0.6619718309859155,
+      "f1": 0.712121212121212,
+      "fpr": 0.05870020964360587,
+      "auroc": 0.9239672837865769,
+      "brier": 0.08868468799231143,
+      "ece": 0.03269279625619066
+    },
+    {
+      "noiseSD": 0.3,
+      "n": 619,
+      "tn": 444,
+      "fp": 33,
+      "fn": 46,
+      "tp": 96,
+      "acc": 0.8723747980613893,
+      "precision": 0.7441860465116279,
+      "recall": 0.676056338028169,
+      "f1": 0.7084870848708487,
+      "fpr": 0.06918238993710692,
+      "auroc": 0.9143930669973721,
+      "brier": 0.09424283701989875,
+      "ece": 0.03886111333115321
+    },
+    {
+      "noiseSD": 0.6,
+      "n": 619,
+      "tn": 437,
+      "fp": 40,
+      "fn": 62,
+      "tp": 80,
+      "acc": 0.8352180936995154,
+      "precision": 0.6666666666666666,
+      "recall": 0.5633802816901409,
+      "f1": 0.6106870229007634,
+      "fpr": 0.08385744234800839,
+      "auroc": 0.8643369651873505,
+      "brier": 0.12259071080593117,
+      "ece": 0.04757490035112073
+    }
+  ]
+}
